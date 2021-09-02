@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -26,9 +28,10 @@ public class Pedido {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Cliente cliente;
 	
-	@OneToMany(mappedBy = "pedido")
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL) //Ao cadastrar pedido, ja cadastra os itens 
 	private List<ItemPedido> itens = new ArrayList<>();
 	
+	@Column(name = "valor_total")
 	private BigDecimal valorTotal;
 
 	public Pedido() {
