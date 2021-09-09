@@ -29,22 +29,26 @@ public class CadastroDeProduto {
 	}
 
 	public static void cadastrarProduto() {
-		Categoria celulares = new Categoria("CELULARES");
-		Categoria caixasSom = new Categoria("CAIXAS DE SOM");
-		Produto celular = new Produto("Xiaomi Redmi", "Muito legal", new BigDecimal(800), celulares );
-		Produto caixaDeSom = new Produto("Caixa JBL", "Som Alfo", new BigDecimal(399.99), caixasSom );
-		Produto iphone = new Produto("Iphone 11", "Camera TOP", new BigDecimal(5699), celulares);
+		Categoria celularesCategoria = new Categoria("CELULARES");
+		Categoria caixasSomCategoria = new Categoria("CAIXAS DE SOM");
+		Categoria videogamesCategoria = new Categoria("CAIXAS DE SOM");
+		Produto celular = new Produto("Xiaomi Redmi", "Muito legal", new BigDecimal(800), celularesCategoria );
+		Produto caixaDeSom = new Produto("Caixa JBL", "Som Alfo", new BigDecimal(399.99), caixasSomCategoria );
+		Produto iphone = new Produto("Iphone 11", "Camera TOP", new BigDecimal(5699), celularesCategoria);
+		Produto playstation = new Produto("PlayStation 5", "Videogame TOP", new BigDecimal(5480), videogamesCategoria);
 		EntityManager em = JPAUtil.getEntityManager();
 		ProdutoDao produtoDao = new ProdutoDao(em);
 		CategoriaDao categoriaDao = new CategoriaDao(em);
 		
 		em.getTransaction().begin();
 		
-		categoriaDao.cadastrar(celulares);
+		categoriaDao.cadastrar(celularesCategoria);
 		produtoDao.cadastrar(celular);
 		produtoDao.cadastrar(iphone);
-		categoriaDao.cadastrar(caixasSom);
+		categoriaDao.cadastrar(caixasSomCategoria);
 		produtoDao.cadastrar(caixaDeSom);
+		categoriaDao.cadastrar(videogamesCategoria);
+		produtoDao.cadastrar(playstation);
 		
 		em.getTransaction().commit();
 		em.close();
