@@ -30,8 +30,9 @@ public class CadastroDeProduto {
 
 	public static void cadastrarProduto() {
 		Categoria celulares = new Categoria("CELULARES");
-		Produto celular = new Produto("Xiaomi Redmi", "Muito legal", new BigDecimal("800"), celulares );
-		
+		Categoria caixasSom = new Categoria("CAIXAS DE SOM");
+		Produto celular = new Produto("Xiaomi Redmi", "Muito legal", new BigDecimal(800), celulares );
+		Produto caixaDeSom = new Produto("Caixa JBL", "Som Alfo", new BigDecimal(399.99), caixasSom );
 		EntityManager em = JPAUtil.getEntityManager();
 		ProdutoDao produtoDao = new ProdutoDao(em);
 		CategoriaDao categoriaDao = new CategoriaDao(em);
@@ -40,6 +41,8 @@ public class CadastroDeProduto {
 		
 		categoriaDao.cadastrar(celulares);
 		produtoDao.cadastrar(celular);
+		categoriaDao.cadastrar(caixasSom);
+		produtoDao.cadastrar(caixaDeSom);
 		
 		em.getTransaction().commit();
 		em.close();

@@ -32,7 +32,7 @@ public class Pedido {
 	private List<ItemPedido> itens = new ArrayList<>();
 	
 	@Column(name = "valor_total")
-	private BigDecimal valorTotal;
+	private BigDecimal valorTotal = new BigDecimal(0);
 
 	public Pedido() {
 	}
@@ -68,5 +68,6 @@ public class Pedido {
 	public void addItem(ItemPedido item) {
 		item.setPedido(this);
 		this.itens.add(item);
+		this.valorTotal = this.valorTotal.add(item.getPrecoTotal());
 	}
 }

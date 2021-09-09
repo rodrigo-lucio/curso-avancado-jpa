@@ -1,6 +1,8 @@
 package br.com.alura.loja.testes;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 
@@ -31,13 +33,20 @@ public class CadastroDePedido {
 		
 		
 		ProdutoDao produtoDao = new ProdutoDao(em);
-		Produto produto = produtoDao.buscarPorId(1L);
-		pedido.addItem(new ItemPedido(3, pedido, produto));
+		
+		pedido.addItem(new ItemPedido(10, pedido, produtoDao.buscarPorId(1L)));
+		pedido.addItem(new ItemPedido(1, pedido, produtoDao.buscarPorId(2L)));
+		
+	
 		PedidoDao pedidoDao = new PedidoDao(em);
 		pedidoDao.cadastrar(pedido);
+		
 		em.getTransaction().commit();
 		
-	}
+		BigDecimal totalVendido = pedidoDao.valorTotalVendido();
+		System.out.println("Valor Total pedidos: " + totalVendido);
+		
+	}	
 	
 	public static void cadastrarCliente() {
 		EntityManager em = JPAUtil.getEntityManager();

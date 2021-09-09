@@ -79,6 +79,9 @@ public class ItemPedido {
 		this.produto = produto;
 	}
 	
+	public BigDecimal getPrecoTotal() {
+		return precoUnitario.multiply(new BigDecimal(quantidade));
+	}
 	
 	
 	
