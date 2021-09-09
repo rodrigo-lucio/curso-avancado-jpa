@@ -33,6 +33,7 @@ public class CadastroDeProduto {
 		Categoria caixasSom = new Categoria("CAIXAS DE SOM");
 		Produto celular = new Produto("Xiaomi Redmi", "Muito legal", new BigDecimal(800), celulares );
 		Produto caixaDeSom = new Produto("Caixa JBL", "Som Alfo", new BigDecimal(399.99), caixasSom );
+		Produto iphone = new Produto("Iphone 11", "Camera TOP", new BigDecimal(5699), celulares);
 		EntityManager em = JPAUtil.getEntityManager();
 		ProdutoDao produtoDao = new ProdutoDao(em);
 		CategoriaDao categoriaDao = new CategoriaDao(em);
@@ -41,6 +42,7 @@ public class CadastroDeProduto {
 		
 		categoriaDao.cadastrar(celulares);
 		produtoDao.cadastrar(celular);
+		produtoDao.cadastrar(iphone);
 		categoriaDao.cadastrar(caixasSom);
 		produtoDao.cadastrar(caixaDeSom);
 		
