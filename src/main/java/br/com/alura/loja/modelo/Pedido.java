@@ -25,8 +25,7 @@ public class Pedido {
 	private Long id;
 	private LocalDate dataCadastro = LocalDate.now();
 
-	@ManyToOne(fetch = FetchType.LAZY) // Se nao deixarmos o fetch = FetchType.LAZY - ele sempre vai fazer o left join
-										// no cliente )
+	@ManyToOne(fetch = FetchType.LAZY) // Se nao deixarmos o fetch = FetchType.LAZY - ele sempre vai fazer o left join // no cliente )							
 	private Cliente cliente; // (tudo que é ToOne ele faz isso por padrão se nao definir
 
 	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL) // Ao cadastrar pedido, ja cadastra os itens

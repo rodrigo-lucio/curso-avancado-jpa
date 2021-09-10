@@ -37,4 +37,10 @@ public class PedidoDao {
 		return em.createQuery(jpql, ProdutoPedidoDTO.class)
 				.getResultList();
 	}
+	
+	public Pedido buscarPedidoComCliente(Long id) {
+		return em.createQuery("SELECT p FROM Pedido p JOIN FETCH p.cliente WHERE p.id = : id ", Pedido.class) // Carrega um relacionamento que é lazy, mas diretamente com o left join
+				.setParameter("id", id)
+				.getSingleResult();
+	}
  }
