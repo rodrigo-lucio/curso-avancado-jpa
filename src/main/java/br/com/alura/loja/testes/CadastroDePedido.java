@@ -20,10 +20,24 @@ import br.com.alura.loja.util.JPAUtil;
 public class CadastroDePedido {
 
 	public static void main(String[] args) {
-		CadastroDeProduto.cadastrarProduto();
+		CadastroDeProduto.cadastrarProdutos();
 		cadastrarCliente();
+		cadastrarPedidoComItens();
+		valorTotalTodosPedidos();
+	}
 
+	protected static void valorTotalTodosPedidos() {
 		EntityManager em = JPAUtil.getEntityManager();
+		PedidoDao pedidoDao = new PedidoDao(em);
+		BigDecimal totalVendido = pedidoDao.valorTotalVendido();
+		System.out.println("Valor Total pedidos: " + totalVendido);
+		pedidoDao.relatorioDeVendas()
+				.forEach(reg -> System.out.println(reg.toString()));
+	}
+
+	protected static PedidoDao cadastrarPedidoComItens() {
+		EntityManager em = JPAUtil.getEntityManager();
+		
 		ClienteDao clienteDao = new ClienteDao(em);
 		Cliente cliente = clienteDao.buscarPorId(1L);
 
@@ -43,18 +57,15 @@ public class CadastroDePedido {
 		pedidoVideogame.addItem(new ItemPedido(2, pedidoVideogame, produtoDao.buscarPorId(4L)));
 		
 		PedidoDao pedidoDao = new PedidoDao(em);
+		
 		pedidoDao.cadastrar(pedido);
 		pedidoDao.cadastrar(pedidoVideogame);
 
 		em.getTransaction().commit();
-
-		BigDecimal totalVendido = pedidoDao.valorTotalVendido();
-		System.out.println("Valor Total pedidos: " + totalVendido);
-		pedidoDao.relatorioDeVendas()
-				.forEach(reg -> System.out.println(reg.toString()));
+		return pedidoDao;
 	}
 
-	public static void cadastrarCliente() {
+	protected static void cadastrarCliente() {
 		EntityManager em = JPAUtil.getEntityManager();
 		Cliente cliente = new Cliente("Rodrigo", "99999999999");
 		ClienteDao clienteDao = new ClienteDao(em);

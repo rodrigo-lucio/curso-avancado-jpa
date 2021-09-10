@@ -24,19 +24,20 @@ public class Pedido {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private LocalDate dataCadastro = LocalDate.now();
-	
-	@ManyToOne(fetch = FetchType.LAZY)
-	private Cliente cliente;
-	
-	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL) //Ao cadastrar pedido, ja cadastra os itens 
+
+	@ManyToOne(fetch = FetchType.LAZY) // Se nao deixarmos o fetch = FetchType.LAZY - ele sempre vai fazer o left join
+										// no cliente )
+	private Cliente cliente; // (tudo que é ToOne ele faz isso por padrão se nao definir
+
+	@OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL) // Ao cadastrar pedido, ja cadastra os itens
 	private List<ItemPedido> itens = new ArrayList<>();
-	
+
 	@Column(name = "valor_total")
 	private BigDecimal valorTotal = new BigDecimal(0);
 
 	public Pedido() {
 	}
-		
+
 	public Pedido(Cliente cliente) {
 		this.cliente = cliente;
 	}
@@ -64,10 +65,21 @@ public class Pedido {
 	public void setValorTotal(BigDecimal valorTotal) {
 		this.valorTotal = valorTotal;
 	}
-	
+
 	public void addItem(ItemPedido item) {
 		item.setPedido(this);
 		this.itens.add(item);
 		this.valorTotal = this.valorTotal.add(item.getPrecoTotal());
 	}
+
+	public List<ItemPedido> getItens() {
+		return itens;
+	}
+
+	@Override
+	public String toString() {
+		return "Pedido [id=" + id + ", dataCadastro=" + dataCadastro + ", cliente=" + cliente + ", valorTotal="
+				+ valorTotal + "]";
+	}
+
 }

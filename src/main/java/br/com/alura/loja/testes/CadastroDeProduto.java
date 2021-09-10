@@ -14,7 +14,7 @@ import br.com.alura.loja.util.JPAUtil;
 public class CadastroDeProduto {
 	
 	public static void main(String[] args) {
-		cadastrarProduto();
+		cadastrarProdutos();
 		EntityManager em = JPAUtil.getEntityManager();
 		ProdutoDao produtoDao = new ProdutoDao(em);
 		
@@ -28,7 +28,7 @@ public class CadastroDeProduto {
 		//System.out.println("Preco do Produto: " +precoDoProduto);
 	}
 
-	public static void cadastrarProduto() {
+	public static void cadastrarProdutos() {
 		Categoria celularesCategoria = new Categoria("CELULARES");
 		Categoria caixasSomCategoria = new Categoria("CAIXAS DE SOM");
 		Categoria videogamesCategoria = new Categoria("CAIXAS DE SOM");
