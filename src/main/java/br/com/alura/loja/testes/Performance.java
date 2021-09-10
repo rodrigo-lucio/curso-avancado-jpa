@@ -1,7 +1,6 @@
 package br.com.alura.loja.testes;
 
 import javax.persistence.EntityManager;
-import javax.persistence.FetchType;
 
 import br.com.alura.loja.dao.PedidoDao;
 import br.com.alura.loja.modelo.Pedido;
