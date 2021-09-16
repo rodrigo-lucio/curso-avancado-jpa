@@ -1,5 +1,6 @@
 package br.com.alura.loja.modelo;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,36 +14,36 @@ public class Cliente {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nome;
-	private String cpf;
 	
+	@Embedded
+	private DadosPessoais dadosPessoais;
+
 	public Cliente() {
 	}
 	
 	public Cliente(String nome, String cpf) {
-		this.nome = nome;
-		this.cpf = cpf;
+		this.dadosPessoais = new DadosPessoais(nome, cpf);
 	}
 
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.dadosPessoais.setNome(nome);
 	}
 
 	public String getCpf() {
-		return cpf;
+		return dadosPessoais.getCpf();
 	}
 
 	public void setCpf(String cpf) {
-		this.cpf = cpf;
+		this.dadosPessoais.setCpf(cpf);
 	}
 
 	public String getNome() {
-		return nome;
+		return dadosPessoais.getNome();
 	}
 
 	@Override
 	public String toString() {
-		return "Cliente [id=" + id + ", nome=" + nome + "]";
+		return "Cliente [id=" + id + ", nome=" + dadosPessoais.getNome() + "]";
 	}
 	
 	
