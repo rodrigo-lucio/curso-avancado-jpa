@@ -7,4 +7,4 @@
 - Herança entre entidades com tipos de estratégias `JOINED` e `SINGLE_TABLE`
 - Chaves compostas
 
-:ballot_box_with_check: Curso feito com o objetivo de conhecer como os frameworks utilizam a JPA por de baixo dos panos
+:ballot_box_with_check: Curso feito com o objetivo de conhecer como os frameworks utilizam a JPA por baixo dos panos
