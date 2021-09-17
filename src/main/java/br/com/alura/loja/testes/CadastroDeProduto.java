@@ -8,6 +8,8 @@ import javax.persistence.EntityManager;
 import br.com.alura.loja.dao.CategoriaDao;
 import br.com.alura.loja.dao.ProdutoDao;
 import br.com.alura.loja.modelo.Categoria;
+import br.com.alura.loja.modelo.Informatica;
+import br.com.alura.loja.modelo.Livro;
 import br.com.alura.loja.modelo.Produto;
 import br.com.alura.loja.util.JPAUtil;
 
@@ -42,11 +44,19 @@ public class CadastroDeProduto {
 		ProdutoDao produtoDao = new ProdutoDao(em);
 		CategoriaDao categoriaDao = new CategoriaDao(em);
 		
+		Livro livro = new Livro("Robert C Martin", 400);
+		livro.setDescricao("Codigo Limpo");
+		livro.setPreco(new BigDecimal(50));
+		
+		Informatica informatica = new Informatica(null, null);
+		
 		em.getTransaction().begin();
 		
 		categoriaDao.cadastrar(celularesCategoria);
 		produtoDao.cadastrar(celular);
 		produtoDao.cadastrar(iphone);
+		produtoDao.cadastrar(livro);
+		produtoDao.cadastrar(informatica);
 		categoriaDao.cadastrar(caixasSomCategoria);
 		produtoDao.cadastrar(caixaDeSom);
 		categoriaDao.cadastrar(videogamesCategoria);
