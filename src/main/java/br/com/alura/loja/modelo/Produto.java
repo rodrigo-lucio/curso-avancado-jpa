@@ -15,7 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "produtos")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)    //Se colocar SINGLE_TABLE, fica tudo numa tabela só
+@Inheritance(strategy = InheritanceType.JOINED)    //Se colocar SINGLE_TABLE, fica tudo numa tabela só
 public class Produto {
 
 	@Id

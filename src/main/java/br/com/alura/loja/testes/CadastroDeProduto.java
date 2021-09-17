@@ -33,9 +33,9 @@ public class CadastroDeProduto {
 	}
 
 	public static void cadastrarProdutos() {
-		Categoria celularesCategoria = new Categoria("CELULARES");
-		Categoria caixasSomCategoria = new Categoria("CAIXAS DE SOM");
-		Categoria videogamesCategoria = new Categoria("CAIXAS DE SOM");
+		Categoria celularesCategoria = new Categoria(1l, "CELULARES");
+		Categoria caixasSomCategoria = new Categoria(2l, "CAIXAS DE SOM");
+		Categoria videogamesCategoria = new Categoria(3l, "CAIXAS DE SOM");
 		Produto celular = new Produto("Xiaomi Redmi", "Muito legal", new BigDecimal(800), celularesCategoria );
 		Produto caixaDeSom = new Produto("Caixa JBL", "Som Alfo", new BigDecimal(399.99), caixasSomCategoria );
 		Produto iphone = new Produto("Iphone 11", "Camera TOP", new BigDecimal(5699), celularesCategoria);
